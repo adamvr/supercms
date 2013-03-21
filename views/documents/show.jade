@@ -3,6 +3,7 @@ extends ../layout
 block content
   h1 #{title}
 
-  blockquote #{doc.text}
+  .container
+    blockquote!= text 
 
-  a(href="/documents/#{doc.id}/edit") Edit document
+  a(href="/documents/#{id}/edit") Edit document
