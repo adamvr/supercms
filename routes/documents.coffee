@@ -34,7 +34,6 @@ module.exports.new = (req, res, next) ->
   res.render 'documents/new', title: 'New Document'
 
 module.exports.create = (req, res, next) ->
-  console.dir(req.body)
   doc = new Document(req.body)
   doc.save (err) ->
     next(err) if err
