@@ -6,6 +6,11 @@ http = require 'http'
 path = require 'path'
 mongoose = require 'mongoose'
 
+# Mongo location
+mongo = process.env.MONGOLAB_URI ||
+  process.env.MONGOHQ_URL ||
+  'mongodb://localhost/test'
+
 # App
 module.exports = app = express()
 
