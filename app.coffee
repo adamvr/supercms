@@ -17,7 +17,7 @@ app.configure ->
   app.use app.router
   app.use express.static(path.join __dirname, 'public')
 
-app.configure 'development' ->
+app.configure 'development', ->
   app.use express.errorHandler()
 
 app.get '/', routes.index
