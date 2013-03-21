@@ -12,7 +12,10 @@ module.exports.index = (req, res, next) ->
 module.exports.show = (req, res, next) ->
   Document.findById req.params.document, (err, doc) ->
     next(err) if err
-    res.render 'documents/show', title: doc.title, doc: doc
+    res.render 'documents/show',
+      title: doc.title
+      id: doc.id
+      text: doc.toHtml()
 
 module.exports.edit = (req, res, next) ->
   Document.findById req.params.document, (err, doc) ->
