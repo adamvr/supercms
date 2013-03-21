@@ -1,9 +1,8 @@
 extends ../layout
 
-
 block content
   h1 Viewing #{title}
-
+  a(href='/documents/new') New Document 
   ul
     each doc in docs
       li 

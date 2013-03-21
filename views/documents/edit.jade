@@ -1,0 +1,14 @@
+extends ../layout
+
+block content
+  h1 Editing #{title}
+
+  form(action="/documents/#{doc.id}", method="post")
+    input(type="hidden", name="_method", value="put")
+    input(type="hidden", name="id", value="#{doc.id}")
+    p
+      label(for="title") Title
+      input(type="text", name="title", id="title", value="#{doc.title}")
+    p
+      textarea(id="text") #{doc.text}
+    input(type="submit", value="Update")

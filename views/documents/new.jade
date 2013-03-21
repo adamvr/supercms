@@ -1,0 +1,12 @@
+extends ../layout
+
+block content
+  h1 #{title}
+
+  form(action="/documents", method="post")
+    p
+      label(for="title") Title
+      input(type="text", name="title", id="title") New Document
+    p
+      textarea(id="text", name="text")
+    input(type="submit", value="Create")
