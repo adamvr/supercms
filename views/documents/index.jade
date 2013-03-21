@@ -1,0 +1,10 @@
+extends ../layout
+
+
+block content
+  h1 Viewing #{title}
+
+  ul
+    each doc in docs
+      li 
+        a(href='/documents/#{doc.id}') #{doc.title}

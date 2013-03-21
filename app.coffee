@@ -1,7 +1,7 @@
 # Module dependencies
 express = require 'express'
+resource = require 'express-resource'
 routes = require './routes'
-user = require './routes/user'
 http = require 'http'
 path = require 'path'
 mongoose = require 'mongoose'
@@ -11,7 +11,8 @@ module.exports = app = express()
 
 # DB Connection
 mongoose.connect 'mongodb://localhost/test'
-db = app.db = mongoose.connection
+db = mongoose.connection
+app.mongoose = mongoose
 
 db.on 'error', (err) -> console.dir(err)
 
@@ -20,6 +21,7 @@ app.configure ->
   app.set 'port', process.env.PORT || 3000
   app.set 'views', __dirname + '/views'
   app.set 'view engine', 'jade'
+  app.locals.pretty = true
   app.use express.favicon()
   app.use express.logger 'dev'
   app.use express.bodyParser()
@@ -33,7 +35,7 @@ app.configure 'development', ->
 
 # Routes
 app.get '/', routes.index
-app.get '/users', user.list
+app.resource 'documents', require './routes/documents'
 
 # Start it!
 app.start = ->
