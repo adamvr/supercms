@@ -10,5 +10,5 @@ block content
       label(for="title") Title
       input(type="text", name="title", id="title", value="#{doc.title}")
     p
-      textarea(id="text") #{doc.text}
+      textarea(id="text", name="text") #{doc.text}
     input(type="submit", value="Update")
