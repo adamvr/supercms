@@ -1,11 +1,21 @@
+# Module dependencies
 express = require 'express'
 routes = require './routes'
 user = require './routes/user'
 http = require 'http'
 path = require 'path'
+mongoose = require 'mongoose'
 
-app = express()
+# App
+module.exports = app = express()
 
+# DB Connection
+mongoose.connect 'mongodb://localhost/test'
+db = app.db = mongoose.connection
+
+db.on 'error', (err) -> console.dir(err)
+
+# Configuration options (general)
 app.configure ->
   app.set 'port', process.env.PORT || 3000
   app.set 'views', __dirname + '/views'
@@ -17,9 +27,11 @@ app.configure ->
   app.use app.router
   app.use express.static(path.join __dirname, 'public')
 
+# Configuration options (dev)
 app.configure 'development', ->
   app.use express.errorHandler()
 
+# Routes
 app.get '/', routes.index
 app.get '/users', user.list
 
